@@ -4,5 +4,5 @@ from django.db import models
 class Notes(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
-    noLikes = models.IntegerField(default=0)
+    likes = models.PositiveSmallIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
