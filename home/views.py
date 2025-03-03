@@ -1,7 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
     return render(request, 'home/welcome.html', {'today': datetime.now()})
+
+@login_required
+def authorized(request):
+    return render(request, 'home/authorized.html', {})
