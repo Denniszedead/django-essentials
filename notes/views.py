@@ -15,3 +15,4 @@ class NotesDetailView(DetailView):
 class PopularNotesListView(ListView):
     queryset = Notes.objects.filter(likes__gt=1)
     context_object_name = 'popular_notes'
+    template_name = 'notes/notes_list.html'
