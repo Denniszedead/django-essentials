@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.views.generic import ListView
 
-# Create your views here.
 from .models import Notes
 
-def list(request):
-    all_notes = Notes.objects.all()
-    return render(request, 'notes/notes_list.html', {'notes': all_notes})
+class NotesListView(ListView):
+    models = Notes
+    context_object_name = 'notes'
+
 
 def detail(request, pk):
     try:
