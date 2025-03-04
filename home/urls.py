@@ -1,8 +1,8 @@
 from django.urls import path
 
-from home.views import home, authorized
+from . import views
 
 urlpatterns = [
-    path('home/', home),
-    path('authorized/', authorized)
+    path('home/', views.HomeView.as_view()),
+    path('authorized/', views.authorized),
 ]
