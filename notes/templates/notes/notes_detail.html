@@ -15,4 +15,8 @@
     <a href="{% url 'notes.delete' pk=note.id %}" class="btn btn-danger">
         Delete
     </a>
+
+    <form>{% csrf_token %}
+        <button type="submit" class="btn btn-primary my-5">Add Like</button>
+    </form>
 {% endblock %}
