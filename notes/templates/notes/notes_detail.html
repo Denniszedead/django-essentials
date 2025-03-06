@@ -7,6 +7,9 @@
     <p>No. Likes: {{ note.likes }}</p>
 </div>
 
+    <a href="{% url 'notes.add_like' pk=note.id %}" class="btn btn-secondary my-5">
+        Upvote
+    </a>
     <a href="{% url 'notes.list' %}" class="btn btn-secondary my-5">
         Back
     </a>
@@ -16,8 +19,4 @@
     <a href="{% url 'notes.delete' pk=note.id %}" class="btn btn-danger">
         Delete
     </a>
-
-    <form>{% csrf_token %}
-        <button type="submit" class="btn btn-primary">Add Like</button>
-    </form>
 {% endblock %}

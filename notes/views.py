@@ -1,4 +1,6 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import DeleteView
 
@@ -40,3 +42,7 @@ def add_like_view(request, pk):
     note = get_object_or_404(Notes, pk=pk)
     note.likes += 1
     note.save()
+
+    return HttpResponseRedirect(
+        reverse('notes.detail', args=(pk, ))
+    )
