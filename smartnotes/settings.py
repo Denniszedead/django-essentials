@@ -130,6 +130,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-IS_CODESPACES = os.environ.get("CODESPACES")
+IS_CODESPACES = os.environ.get("CODESPACES") == 'true'
 if IS_CODESPACES:
     CSRF_TRUSTED_ORIGINS = ['https://localhost:8000']
