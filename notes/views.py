@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import DeleteView
 
@@ -34,3 +35,8 @@ class PopularNotesListView(ListView):
     queryset = Notes.objects.filter(likes__gt=1)
     context_object_name = 'notes'
     template_name = 'notes/notes_list.html'
+
+def add_like_view(request, pk):
+    note = get_object_or_404(Notes, pk=pk)
+    note.likes += 1
+    note.save()
