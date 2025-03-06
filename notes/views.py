@@ -1,8 +1,13 @@
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 
 from .forms import NotesForm
 from .models import Notes
 
+
+class NotesUpdateView(UpdateView):
+    model = Notes
+    success_url = '/smart/notes'
+    form_class = NotesForm
 
 class NotesCreateView(CreateView):
     model = Notes
