@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
@@ -39,10 +39,12 @@ class PopularNotesListView(ListView):
     template_name = 'notes/notes_list.html'
 
 def add_like_view(request, pk):
-    note = get_object_or_404(Notes, pk=pk)
-    note.likes += 1
-    note.save()
+    if request.method == 'POST':
+        note = get_object_or_404(Notes, pk=pk)
+        note.likes += 1
+        note.save()
 
-    return HttpResponseRedirect(
-        reverse('notes.detail', args=(pk, ))
-    )
+        return HttpResponseRedirect(
+            reverse('notes.detail', args=(pk, ))
+        )
+    raise Http404
