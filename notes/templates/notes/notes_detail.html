@@ -4,6 +4,7 @@
 <div class="border round">
     <h1 class="my-5">{{ note.title }}</h1>
     <p>{{ note.text }}</p>
+    <p>No. Likes: {{ note.likes }}</p>
 </div>
 
     <a href="{% url 'notes.list' %}" class="btn btn-secondary my-5">
