@@ -6,4 +6,5 @@ urlpatterns = [
     path('notes', views.NotesListView.as_view(), name='notes.list'),
     path('note/<int:pk>', views.NotesDetailView.as_view(), name='notes.detail'),
     path('popular-notes', views.PopularNotesListView.as_view()),
+    path('notes/new', views.NotesCreateView.as_view(), name='notes.new'),
 ]
