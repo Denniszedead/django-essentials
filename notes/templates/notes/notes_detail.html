@@ -10,6 +10,9 @@
         Back
     </a>
     <a href="{% url 'notes.update' pk=note.id %}" class="btn btn-secondary">
-    Edit
+        Edit
+    </a>
+    <a href="{% url 'notes.delete' pk=note.id %}" class="btn btn-danger">
+        Delete
     </a>
 {% endblock %}
