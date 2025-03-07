@@ -86,7 +86,7 @@ def add_like_view(request, pk):
     raise Http404
 
 
-def toggle_isPublic_view(request, pk):
+def toggle_is_public_view(request, pk):
     if request.method == 'POST':
         note = get_object_or_404(Notes, pk=pk)
         note.is_public = not note.is_public
