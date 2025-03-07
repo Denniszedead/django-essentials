@@ -2,17 +2,9 @@
 
 {% block content %}
     <div class="border round">
-        <h1 class="my-5">{{ note.title }}</h1>
+        <h1 class="my-5">{{ note.title }}{% if note.is_public %}<span class="badge bg-secondary">Public</span>{% endif %}</h1>
         <p>{{ note.text }}</p>
         <p>No. Likes: {{ note.likes }}</p>
-        <p>
-            Privacy status:
-            {% if note.is_public %}
-                Public
-            {% else %}
-                Private
-            {% endif %}
-        </p>
     </div>
 
     <form method="post" class="d-inline" action="{% url 'notes.add_like' pk=note.id %}">{% csrf_token %}
