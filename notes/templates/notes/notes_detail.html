@@ -5,6 +5,14 @@
     <h1 class="my-5">{{ note.title }}</h1>
     <p>{{ note.text }}</p>
     <p>No. Likes: {{ note.likes }}</p>
+    <p>
+        Privacy status:
+        {% if note.isPublic %}
+            Public
+        {% else %}
+            Private
+        {% endif %}
+    </p>
 </div>
 
     <form method="post" class="d-inline" action="{% url 'notes.add_like' pk=note.id %}">{% csrf_token %}
