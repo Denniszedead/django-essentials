@@ -6,5 +6,5 @@ from .views import LogoutInterfaceView
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('login/', views.LoginInterfaceView.as_view(), name='login'),
-    path('logout/', LogoutInterfaceView.as_view(), name='logout'),
+    path('logout/', views.LogoutInterfaceView.as_view(), name='logout'),
 ]
