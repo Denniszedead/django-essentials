@@ -21,7 +21,7 @@
             Upvote
         </button>
     </form>
-    <form method="post" class="d-inline" action="{% url 'notes.toggle_isPublic' pk=note.id %}">{% csrf_token %}
+    <form method="post" class="d-inline" action="{% url 'notes.toggle_is_public' pk=note.id %}">{% csrf_token %}
         <button type="submit" class="btn btn-secondary my-5">
             Set {% if not note.is_public %}
                 Public
