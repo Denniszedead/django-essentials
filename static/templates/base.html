@@ -20,6 +20,7 @@
                 </button>
             </form>
         {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-outline-light me-1">Signup</a>
             <a href="{% url 'login' %}" class="btn btn-outline-light me-1">Login</a>
         {% endif %}
     </div>
