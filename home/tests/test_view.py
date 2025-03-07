@@ -14,10 +14,14 @@ def test_signup_endpoint_returns_form_for_unauthenticated_user(client):
 
 @pytest.mark.django_db
 def test_signup_endpoint_redirects_authenticated_user(client):
+    '''
+    When a user is authenticated and try to access the signup page, they are redirected to the list of their notes.
+    '''
+
     user = User.objects.create_user('Dennis', 'dennisng2255@gmail.com', 'password')
     client.login(username=user.username, password='password')
 
     response = client.get(path='/signup', follow=True)
 
-    assert response.status_code == 200
+    assert 200 == response.status_code
     assert 'notes/notes_list.html' in response.template_name
