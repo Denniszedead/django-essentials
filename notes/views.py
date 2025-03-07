@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import NotesForm
 from .models import Notes
@@ -23,10 +24,11 @@ class NotesCreateView(CreateView):
     success_url = '/smart/notes'
     form_class = NotesForm
 
-class NotesListView(ListView):
+class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = 'notes'
     template_name = 'notes/notes_list.html'
+    login_url = '/admin'
 
 
 class NotesDetailView(DetailView):
