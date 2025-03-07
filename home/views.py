@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect
 from datetime import datetime
 from django.views.generic import TemplateView, CreateView
