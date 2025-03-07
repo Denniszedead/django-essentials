@@ -31,6 +31,15 @@ class NotesUpdateView(LoginRequiredMixin, UpdateView):
     form_class = NotesForm
     login_url = '/login'
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            return _validate_if_user_uses_access_own_post(self)
+        else:
+            return self.form_invalid(form)
+
 
 class NotesCreateView(LoginRequiredMixin, CreateView):
     model = Notes
