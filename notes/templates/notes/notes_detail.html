@@ -2,7 +2,8 @@
 
 {% block content %}
     <div class="border round">
-        <h1 class="my-5">{{ note.title }}{% if note.is_public %}<span class="badge bg-secondary">Public</span>{% endif %}</h1>
+        <h1 class="my-5">
+            {{ note.title }}{% if note.is_public %}<span class="badge bg-secondary">Public</span>{% endif %}</h1>
         <p>{{ note.text }}</p>
         <p>No. Likes: {{ note.likes }}</p>
     </div>
@@ -16,10 +17,10 @@
     <form method="post" class="d-inline" action="{% url 'notes.toggle_is_public' pk=note.id %}">{% csrf_token %}
         <button type="submit" class="btn btn-secondary my-5">
             Set {% if not note.is_public %}
-                Public
-            {% else %}
-                Private
-            {% endif %}
+            Public
+        {% else %}
+            Private
+        {% endif %}
         </button>
     </form>
     <a href="{% url 'notes.list' %}" class="btn btn-secondary my-5">
