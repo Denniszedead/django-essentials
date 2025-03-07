@@ -15,6 +15,10 @@ class NotesDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'notes/notes_delete.html'
     login_url = '/login'
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return _validate_if_user_uses_access_own_post(self)
+
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
@@ -30,6 +34,10 @@ class NotesUpdateView(LoginRequiredMixin, UpdateView):
     success_url = '/smart/notes'
     form_class = NotesForm
     login_url = '/login'
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return _validate_if_user_uses_access_own_post(self)
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
