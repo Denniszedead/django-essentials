@@ -87,7 +87,7 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
 class PublicNotesDetailView(DetailView):
     model = Notes
     context_object_name = 'note'
-    queryset = Notes.objects.filter(public=True)
+    queryset = Notes.objects.filter(is_public=True)
 
 
 class PopularNotesListView(LoginRequiredMixin, ListView):
