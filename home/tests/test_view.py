@@ -2,18 +2,18 @@ import pytest
 
 from django.contrib.auth.models import User
 
-def test_home_view(client):
+def test_home_endpoint_returns_welcome_page(client):
     response = client.get(path='/')
     assert response.status_code == 200
     assert 'Welcome to SmartNotes!' in str(response.content)
 
-def test_signup(client):
+def test_signup_endpoint_returns_form_for_unauthenticated_user(client):
     response = client.get(path='/signup')
     assert response.status_code == 200
     assert 'home/register.html' in response.template_name
 
 @pytest.mark.django_db
-def test_signup_authenticated(client):
+def test_signup_endpoint_redirects_authenticated_user(client):
     user = User.objects.create_user('Dennis', 'dennisng2255@gmail.com', 'password')
     client.login(username=user.username, password='password')
 
