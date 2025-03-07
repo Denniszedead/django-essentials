@@ -87,16 +87,7 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
 class PublicNotesDetailView(DetailView):
     model = Notes
     context_object_name = 'note'
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.is_public:
-            context = self.get_context_data(note=self.object)
-            return self.render_to_response(context)
-        else:
-            return HttpResponseRedirect(
-                reverse('notes.list')
-            )
+    queryset = Notes.objects.filter(public=True)
 
 
 class PopularNotesListView(LoginRequiredMixin, ListView):
