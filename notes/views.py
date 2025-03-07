@@ -24,6 +24,12 @@ class NotesCreateView(CreateView):
     success_url = '/smart/notes'
     form_class = NotesForm
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
 class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = 'notes'
