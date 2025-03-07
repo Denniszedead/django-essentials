@@ -30,6 +30,9 @@ class NotesListView(LoginRequiredMixin, ListView):
     template_name = 'notes/notes_list.html'
     login_url = '/admin'
 
+    def get_queryset(self):
+        return self.request.user.notes.all()
+
 
 class NotesDetailView(DetailView):
     model = Notes
