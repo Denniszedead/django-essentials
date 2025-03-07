@@ -2,7 +2,11 @@
 
 {% block content %}
     <form method="post" action="{% url 'logout' %}">{% csrf_token %}
-        <input type="submit" value="Logout">
+        <div class="row">
+            <div class="col-auto ms-auto">
+                <input type="submit" value="Logout">
+            </div>
+        </div>
     </form>
 
     {% block notes_content %}
