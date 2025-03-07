@@ -61,7 +61,9 @@ class PublicNotesDetailView(DetailView):
         if note.is_public:
             return self.render_to_response(self.get_context_data(note=note))
         else:
-            return HttpResponseRedirect('notes.list')
+            return HttpResponseRedirect(
+                reverse('notes.list')
+            )
 
 
 class PopularNotesListView(LoginRequiredMixin, ListView):
