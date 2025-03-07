@@ -10,4 +10,5 @@ urlpatterns = [
     path('note/<int:pk>/edit', views.NotesUpdateView.as_view(), name='notes.update'),
     path('note/<int:pk>/delete', views.NotesDeleteView.as_view(), name='notes.delete'),
     path('note/<int:pk>/add_like', views.add_like_view, name='notes.add_like'),
+    path('note/<int:pk>/toggle_isPublic', views.toggle_isPublic_view, name='notes.toggle_isPublic'),
 ]
