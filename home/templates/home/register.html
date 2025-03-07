@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method='POST' style='text-align: left; margin: 0 auto; width: 600px;'>{% csrf_token %}
-    {{form.as_p}}
-    <input class='btn btn-secondary' type='submit' name='Submit'/>
-</form>
+    <form method='POST' style='text-align: left; margin: 0 auto; width: 600px;'>{% csrf_token %}
+        {{ form.as_p }}
+        <input class='btn btn-secondary' type='submit' name='Submit'/>
+    </form>
+    {% if form.errors %}
+        <div class="alert alert-danger my-5">
+            {{ form.errors.title.as_text }}
+        </div>
+    {% endif %}
 
 {% endblock %}
