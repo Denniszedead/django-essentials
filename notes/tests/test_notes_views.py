@@ -9,7 +9,7 @@ def test_list_endpoint_return_user_notes(client):
     client.login(username=user.username, password='password')
 
     note = Notes.objects.create(title='An Interesting title', text='This is an interesting note', user=user)
-    note = Notes.objects.create(title='Another Interesting title', text='This is another interesting note', user=user)
+    second_note = Notes.objects.create(title='Another Interesting title', text='This is another interesting note', user=user)
 
     response = client.get(path='/smart/notes')
     assert 200 == response.status_code
