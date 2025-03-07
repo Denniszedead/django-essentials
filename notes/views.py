@@ -51,6 +51,12 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'note'
     login_url = '/login'
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        return validate_if_user_uses_access_own_post(self)
+
+
 
 class PublicNotesDetailView(DetailView):
     model = Notes
@@ -96,3 +102,13 @@ def toggle_is_public_view(request, pk):
             reverse('notes.detail', args=(pk,))
         )
     raise Http404
+
+
+def validate_if_user_uses_access_own_post(view):
+    if view.object.user == view.request.user:
+        context = view.get_context_data(note=view.object)
+        return view.render_to_response(context)
+    else:
+        return HttpResponseRedirect(
+            reverse('notes.list')
+        )
