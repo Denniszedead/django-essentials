@@ -54,7 +54,7 @@ class NotesDetailView(LoginRequiredMixin, DetailView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
 
-        return validate_if_user_uses_access_own_post(self)
+        return _validate_if_user_uses_access_own_post(self)
 
 
 
@@ -104,7 +104,7 @@ def toggle_is_public_view(request, pk):
     raise Http404
 
 
-def validate_if_user_uses_access_own_post(view):
+def _validate_if_user_uses_access_own_post(view):
     if view.object.user == view.request.user:
         context = view.get_context_data(note=view.object)
         return view.render_to_response(context)
