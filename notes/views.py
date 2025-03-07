@@ -57,9 +57,10 @@ class PublicNotesDetailView(DetailView):
     context_object_name = 'note'
 
     def get(self, request, *args, **kwargs):
-        note = self.get_object()
-        if note.is_public:
-            return self.render_to_response(self.get_context_data(note=note))
+        self.object = self.get_object()
+        if self.object.is_public:
+            context = self.get_context_data(note=self.object)
+            return self.render_to_response(context)
         else:
             return HttpResponseRedirect(
                 reverse('notes.list')
